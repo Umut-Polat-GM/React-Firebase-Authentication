@@ -4,6 +4,7 @@ import {
     signOut,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
+    updateProfile,
 } from "firebase/auth";
 import toast from "react-hot-toast";
 
@@ -19,11 +20,16 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 
-export const registerUser = async ({ email, password }) => {
+export const registerUser = async ({ email, password, name }) => {
     try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        // Signed in
+
+        await updateProfile(userCredential.user, {
+            displayName: name
+        });
+
         const user = userCredential.user;
+        
         return user;
     } catch (error) {
         const errorMessage = error.message;

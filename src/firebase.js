@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getFirestore, collection, addDoc, deleteDoc, doc } from "firebase/firestore";
 import {
     getAuth,
     signOut,
@@ -19,6 +20,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
+export const db = getFirestore(app);
 
 export const registerUser = async ({ email, password, name }) => {
     try {
@@ -61,5 +63,28 @@ export const logoutUser = async () => {
         toast.error(errorCode, errorMessage);
     }
 };
+
+export const addNewStudent = async (post) => {
+    try {
+        const docRef = await addDoc(collection(db, "Students"), post);
+        return docRef;
+    } catch (error) {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        toast.error(errorCode, errorMessage);
+    }
+}
+
+export const deleteStudent = async (id) => {
+    try {
+        const docRef = await deleteDoc(doc(db, "Students", id));
+        toast.success("Öğrenci Silindi");
+        return docRef;
+    } catch (error) {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        toast.error(errorCode, errorMessage);
+    }
+}
 
 export default app;

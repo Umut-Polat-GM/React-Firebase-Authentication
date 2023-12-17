@@ -9,7 +9,6 @@ import {
     Typography,
     InputAdornment,
     IconButton,
-    Grid,
     Link,
     Paper,
 } from "@mui/material";
@@ -164,13 +163,21 @@ const Register = () => {
                     >
                         Giriş Yap
                     </Button>
-                    <Grid container>
-                        <Grid item>
-                            <Link href="/register" variant="body2">
-                                {"Henüz kayıt olmadınız mı? Kayıt Ol"}
-                            </Link>
-                        </Grid>
-                    </Grid>
+                    <Box
+                        sx={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            alignItems: "center",
+                        }}
+                    >
+                        <Link href="/register" variant="body2">
+                            {"Hesap Oluştur"}
+                        </Link>
+
+                        <Link href="/addStudent" variant="body2">
+                            {"Yeni Öğrenci Kayıt"}
+                        </Link>
+                    </Box>
                 </Box>
             </Paper>
         </Container>

@@ -3,6 +3,7 @@ import { AppBar, Toolbar, Typography, Button } from "@mui/material";
 import CameraIcon from "@mui/icons-material/PhotoCamera";
 import { logoutUser } from "../firebase";
 import { useNavigate } from "react-router-dom";
+import DataTable from "../components/DataTable";
 
 const Home = () => {
     const { user } = useSelector((state) => state.auth);
@@ -32,6 +33,7 @@ const Home = () => {
                         Çıkış Yap
                     </Button>
                 </Toolbar>
+                <DataTable />
             </AppBar>
         </div>
     );

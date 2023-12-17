@@ -2,6 +2,7 @@ import { Toaster } from "react-hot-toast";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
+import AddStudent from "./pages/AddStudent";
 import Login from "./pages/Login";
 import { useSelector } from "react-redux";
 
@@ -13,6 +14,7 @@ const App = () => {
             <Routes>
                 <Route path="/" element={user === null ? <Login /> : <Home />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/addStudent" element={<AddStudent />} />
                 <Route path="/login" element={<Login />} />
             </Routes>
         </div>
